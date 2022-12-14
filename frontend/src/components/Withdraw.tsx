@@ -1,5 +1,5 @@
 import { Flex, Button, Spinner, Text } from '@chakra-ui/react'
-import { ethers } from 'ethers'
+import { BigNumber, ethers } from 'ethers'
 import { useEffect, useState } from 'react'
 import { useAccount } from 'wagmi'
 import { useCasinoContract } from '../hooks/contracts/useCasinoContract'
@@ -36,7 +36,9 @@ export default function Withdraw() {
         return <Spinner />
     }
 
-    if (balance === 0) {
+    console.log(balance)
+
+    if (balance === BigInt(0)) {
         return <Text>You have no winnings to withdraw</Text>
     }
 
