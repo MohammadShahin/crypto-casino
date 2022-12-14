@@ -3,10 +3,10 @@ import { ethers } from "hardhat";
 async function main() {
   const potPrizePercentage = 10;
   const potIncomePercentage = 10;
-  const staticPrize = ethers.utils.parseEther("0.5");
+  const staticPrize = ethers.utils.parseEther("0.0005");
   const ownerIncomePercentage = 15;
-  const queuePrizeAmount = ethers.utils.parseEther("0.02");
-  const biddingAmount = ethers.utils.parseEther("0.0000001");
+  const queuePrizeAmount = ethers.utils.parseEther("0.00001");
+  const biddingAmount = ethers.utils.parseEther("0.00005");
   const timeToLive = 60;
   const numbersRange = 8;
 

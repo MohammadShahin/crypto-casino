@@ -19,6 +19,10 @@ const config: HardhatUserConfig = {
       url: `https://eth-goerli.g.alchemy.com/v2/s3OFGri7DNMiwmtKUQ9iZD-rdkV69riv`,
       accounts: ["dccf18f41d6266a08171828d31f04dea3528a58d70e3591d94367a0c8a4183a4"] 
     },
+    mumbai: {
+      url: `https://polygon-mumbai.g.alchemy.com/v2/s3OFGri7DNMiwmtKUQ9iZD-rdkV69riv`,
+      accounts: [""]
+    }
   }
 };
 

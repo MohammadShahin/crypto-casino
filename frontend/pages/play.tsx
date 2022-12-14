@@ -2,7 +2,7 @@ import type { NextPage } from 'next'
 import { useAccount } from 'wagmi'
 import { ethers } from 'ethers'
 import { useCasinoContract } from '../src/hooks/contracts/useCasinoContract'
-import { Flex, useToast, Box, Button } from '@chakra-ui/react'
+import { Flex, useToast, Box, Button, Text } from '@chakra-ui/react'
 import { useState } from 'react'
 import TableWithCards from '../src/components/TableWithCards'
 
@@ -36,6 +36,15 @@ const Home: NextPage = () => {
         <Flex direction="column" alignItems="center" justifyContent="center">
             <Box mt={10} />
 
+            <Text
+                fontSize="4xl"
+                mb="3rem"
+                color={'yellow.300'}
+                fontWeight="bold"
+            >
+                Two cards among these cards are Aces. Choose one of them and win some money!
+            </Text>
+
             <TableWithCards
                 selectedCard={userNumber}
                 setSelectedCard={(newNumber: number) =>
@@ -49,7 +58,9 @@ const Home: NextPage = () => {
             <Button
                 onClick={guessNumber}
                 isLoading={isTransactionLoading}
-                w="10rem"
+                w="15rem"
+                h="5rem"
+                fontSize={'2xl'}
             >
                 Guess
             </Button>

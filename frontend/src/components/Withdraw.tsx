@@ -1,4 +1,5 @@
 import { Flex, Button, Spinner, Text } from '@chakra-ui/react'
+import { ethers } from 'ethers'
 import { useEffect, useState } from 'react'
 import { useAccount } from 'wagmi'
 import { useCasinoContract } from '../hooks/contracts/useCasinoContract'
@@ -6,17 +7,19 @@ import { useCasinoContract } from '../hooks/contracts/useCasinoContract'
 export default function Withdraw() {
     const { isConnected, address } = useAccount()
     const contract = useCasinoContract()
-    const [balance, setBalance] = useState(-1)
+    const [balance, setBalance] = useState<number | bigint>(-1)
 
     useEffect(() => {
         ;(async () => {
             if (contract && address) {
                 try {
-                    const newBalance = (
+                    const newBalance: ethers.BigNumber = (
                         await contract.toBePaid(address)
-                    ).toNumber()
-                    setBalance(newBalance)
-                } catch {
+                    )
+                    console.log(newBalance.toBigInt())
+                    setBalance(newBalance.toBigInt())
+                } catch (e){
+                    console.log("ere", e)
                     setBalance(0)
                 }
             }
@@ -40,7 +43,7 @@ export default function Withdraw() {
 
     return (
         <Flex flexDir="column" textAlign={'center'} gap={10}>
-            <Text>You have {balance} Weis to withdraw</Text>
+            <Text>You have {ethers.utils.formatEther(balance)} eth to withdraw</Text>
             <Button onClick={withdraw}>Withdraw</Button>
         </Flex>
     )
