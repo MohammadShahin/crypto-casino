@@ -17,9 +17,20 @@ const Home: NextPage = () => {
     const guessNumber = async () => {
         if (userNumber && isConnected) {
             setIsTransactionLoading(true)
-            await contract.guessTheNumber(userNumber, {
-                value: ethers.utils.parseEther('0.0000001'),
-            })
+            try {
+                await contract.guessTheNumber(userNumber, {
+                    value: ethers.utils.parseEther('0.0000001'),
+                })
+            }
+            catch {
+                toast({
+                    title: "Couldn't send transaction!",
+                    description: 'Please try again.',
+                    status: 'error',
+                    duration: 5000,
+                    isClosable: true,
+                })
+            }
             setIsTransactionLoading(false)
         } else {
             toast({
