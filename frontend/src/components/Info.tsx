@@ -6,7 +6,9 @@ import {
     Td,
     TableContainer,
     Spinner,
+    Text
 } from '@chakra-ui/react'
+import { ethers } from 'ethers'
 import { useRouter } from 'next/router'
 import { useMemo } from 'react'
 import { useAccount } from 'wagmi'
@@ -53,6 +55,7 @@ function Info() {
                         <Td textAlign="center">Your Prize</Td>
                         {/* <Td textAlign="center">Winning Number</Td> */}
                         <Td textAlign="center">Played At</Td>
+                        <Td textAlign="center">Result</Td>
                     </Tr>
                 </Thead>
                 <Tbody>
@@ -74,7 +77,7 @@ function Info() {
                                 {/* <Td textAlign="center">
                                     {guess.guessedNumber}
                                 </Td> */}
-                                <Td textAlign="center">{guess.prize}</Td>
+                                <Td textAlign="center">{ethers.utils.formatEther(guess.prize)} eth</Td>
                                 {/* <Td textAlign="center">
                                     {guess.winningNumber}
                                 </Td> */}
@@ -82,6 +85,21 @@ function Info() {
                                     {time.toLocaleDateString() +
                                         ' ' +
                                         time.toLocaleTimeString()}
+                                </Td>
+                                <Td
+                                    textAlign="center"
+                                    color={(parseInt(guess.guessedNumber) === parseInt(guess.winningNumber) ||
+                                        parseInt(guess.guessedNumber) === (parseInt(guess.winningNumber) % 8) + 1) ? 'green.500' : 'red.500'}
+                                    fontWeight="bold"
+                                >
+                                    {
+                                        parseInt(guess.guessedNumber) === parseInt(guess.winningNumber) ? 
+                                        (<>Won Queue Prize</>) :
+                                            (
+                                                (parseInt(guess.guessedNumber) === (parseInt(guess.winningNumber) % 8) + 1)
+                                                    ? (<>Won Pot prize</>) : (<> Lost</>)
+                                            )
+                                    }
                                 </Td>
                             </Tr>
                         )
