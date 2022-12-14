@@ -22,22 +22,34 @@ const Home: NextPage = () => {
             </Center>
             <Flex flexDir={'column'}>
                 <Box>
-                <Text fontSize="2xl" colorScheme="blue" margin="2% 10%">
-                    Casino is a blockchain based lottery/roulette game.
-                    It&apos;s a mix between buying lottery tickets and casino
-                    IGT Triple Stars Slot machine. 
-                </Text>
-                <Text fontSize="2xl" colorScheme="blue" as="b" margin="2% 11%" fontStyle='italic' color={'yellow.300'}>
-                    The difference here is when you lose, there is a high chance
-                    of you getting back most of your money!
+                    <Text fontSize="2xl" colorScheme="blue" margin="2% 10%">
+                        Casino is a blockchain based lottery/roulette game.
+                        It&apos;s a mix between buying lottery tickets and
+                        casino IGT Triple Stars Slot machine.
+                    </Text>
+                    <Text
+                        fontSize="2xl"
+                        colorScheme="blue"
+                        as="b"
+                        margin="2% 11%"
+                        fontStyle="italic"
+                        color={'yellow.300'}
+                    >
+                        The difference here is when you lose, there is a high
+                        chance of you getting back most of your money!
                     </Text>
                 </Box>
-               
-                <Text fontSize="2xl" colorScheme="blue" margin="2% 10%">
-                    The game works as follows: You need to pick one playing card from a deck with 8 cards. There are 2 aces in the deck,
-                    if you pick the Ace of clubs you will win the maximum between <span style={{fontWeight: 'bold', color:'turquoise'}}>({ethers.utils.formatEther(staticPrize)}, 20% of the money in the queue) eth</span>.
-                </Text>
 
+                <Text fontSize="2xl" colorScheme="blue" margin="2% 10%">
+                    The game works as follows: You need to pick one playing card
+                    from a deck with 8 cards. There are 2 aces in the deck, if
+                    you pick the Ace of clubs you will win the maximum between{' '}
+                    <span style={{ fontWeight: 'bold', color: 'turquoise' }}>
+                        ({ethers.utils.formatEther(staticPrize)}, 20% of the
+                        money in the queue) eth
+                    </span>
+                    .
+                </Text>
             </Flex>
             <Center>
                 <Button

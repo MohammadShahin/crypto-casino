@@ -42,7 +42,8 @@ const Home: NextPage = () => {
                 color={'yellow.300'}
                 fontWeight="bold"
             >
-                Two cards among these cards are Aces. Choose one of them and win some money!
+                Two cards among these cards are Aces. Choose one of them and win
+                some money!
             </Text>
 
             <TableWithCards

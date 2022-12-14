@@ -13,13 +13,12 @@ export default function Withdraw() {
         ;(async () => {
             if (contract && address) {
                 try {
-                    const newBalance: ethers.BigNumber = (
+                    const newBalance: ethers.BigNumber =
                         await contract.toBePaid(address)
-                    )
                     console.log(newBalance.toBigInt())
                     setBalance(newBalance.toBigInt())
-                } catch (e){
-                    console.log("ere", e)
+                } catch (e) {
+                    console.log('ere', e)
                     setBalance(0)
                 }
             }
@@ -43,7 +42,9 @@ export default function Withdraw() {
 
     return (
         <Flex flexDir="column" textAlign={'center'} gap={10}>
-            <Text>You have {ethers.utils.formatEther(balance)} eth to withdraw</Text>
+            <Text>
+                You have {ethers.utils.formatEther(balance)} eth to withdraw
+            </Text>
             <Button onClick={withdraw}>Withdraw</Button>
         </Flex>
     )

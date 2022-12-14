@@ -30,7 +30,6 @@ const walletClient = createClient({
 })
 
 function MyApp({ Component, pageProps }: AppProps) {
-
     return (
         <WagmiConfig client={walletClient}>
             <ApolloProvider client={graphClient}>
