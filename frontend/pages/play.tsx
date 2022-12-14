@@ -21,8 +21,7 @@ const Home: NextPage = () => {
                 await contract.guessTheNumber(userNumber, {
                     value: ethers.utils.parseEther('0.0000001'),
                 })
-            }
-            catch {
+            } catch {
                 toast({
                     title: "Couldn't send transaction!",
                     description: 'Please try again.',
