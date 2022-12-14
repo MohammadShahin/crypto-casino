@@ -8,7 +8,7 @@
 
 .footer .a {
     font-weight: bold;
-    color: orange!;
+    color: orange;
 }
 
 @media (min-width: 480px) {
