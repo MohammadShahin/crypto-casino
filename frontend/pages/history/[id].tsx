@@ -1,12 +1,13 @@
-import { Spinner } from '@chakra-ui/react'
+import { Spinner, useColorMode } from '@chakra-ui/react'
 import { useRouter } from 'next/router'
-import { useMemo } from 'react'
+import { useEffect, useMemo } from 'react'
 import TableWithCards from '../../src/components/TableWithCards'
 import { useGetAllGuessesQuery } from '../../src/generated/graphql'
 
 export default function History() {
     const router = useRouter()
     const { id } = router.query
+    const { setColorMode } = useColorMode()
 
     const guessesRaw = useGetAllGuessesQuery()
     const guess = useMemo(() => {
@@ -14,6 +15,11 @@ export default function History() {
             (guess) => guess.id.toString() === id
         )
     }, [guessesRaw, id])
+
+    useEffect(() => {
+        setColorMode('dark')
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [])
 
     if (guessesRaw.loading) return <Spinner />
     if (guessesRaw.error) return <div>Error</div>

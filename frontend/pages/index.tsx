@@ -1,6 +1,14 @@
 import type { NextPage } from 'next'
 import { useRouter } from 'next/router'
-import { Center, Heading, Text, Button, Flex, Box } from '@chakra-ui/react'
+import {
+    Center,
+    Heading,
+    Text,
+    Button,
+    Flex,
+    Box,
+    useColorMode,
+} from '@chakra-ui/react'
 import { useStaticPrize } from '../src/hooks/useStaticPrize'
 import { ethers } from 'ethers'
 import { useEffect, useState } from 'react'
@@ -9,8 +17,15 @@ const Home: NextPage = () => {
     const router = useRouter()
     const staticPrize = useStaticPrize()
     const [mounted, setMounted] = useState(false)
+    const { setColorMode } = useColorMode()
 
     useEffect(() => setMounted(true), [])
+
+    useEffect(() => {
+        setColorMode('dark')
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [])
+
     if (!mounted) return null
 
     return (

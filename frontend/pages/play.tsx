@@ -2,8 +2,15 @@ import type { NextPage } from 'next'
 import { useAccount } from 'wagmi'
 import { ethers } from 'ethers'
 import { useCasinoContract } from '../src/hooks/contracts/useCasinoContract'
-import { Flex, useToast, Box, Button, Text } from '@chakra-ui/react'
-import { useState } from 'react'
+import {
+    Flex,
+    useToast,
+    Box,
+    Button,
+    Text,
+    useColorMode,
+} from '@chakra-ui/react'
+import { useEffect, useState } from 'react'
 import TableWithCards from '../src/components/TableWithCards'
 
 const Home: NextPage = () => {
@@ -11,8 +18,13 @@ const Home: NextPage = () => {
     const [isTransactionLoading, setIsTransactionLoading] = useState(false)
     const contract = useCasinoContract()
     const { isConnected } = useAccount()
-
+    const { setColorMode } = useColorMode()
     const toast = useToast()
+
+    useEffect(() => {
+        setColorMode('dark')
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [])
 
     const guessNumber = async () => {
         if (userNumber && isConnected) {
