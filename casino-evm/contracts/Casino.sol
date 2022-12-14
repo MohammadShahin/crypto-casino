@@ -24,7 +24,18 @@ contract Casino is VRFConsumerBase {
 
     address payable public owner;
 
+    bytes32 internal keyHash;
+    uint256 internal fee;
+    uint256 internal randomResult;
+
+
+    uint256 requestIdTesting = 0;
+
+    mapping(uint256 => address) public requestIdToAddressTesting;
+    mapping(uint256 => uint256) public requestIdToGuessTesting;
     mapping(address => uint256) public toBePaid;
+    mapping(bytes32 => address) public requestIdToAddress;
+    mapping(bytes32 => uint256) public requestIdToGuess;
 
     event GuessedTheNumber(address indexed bidder, uint indexed guessedNumber, uint indexed winningNumber, uint prize);
 
@@ -37,7 +48,12 @@ contract Casino is VRFConsumerBase {
         uint256 _biddingAmount,
         uint256 _timeToLive,
         uint256 _numbersRange
-    ) {
+    )
+        VRFConsumerBase(
+            0x8C7382F9D8f56b33781fE506E897a4F1e2d17255, // VRF Coordinator
+            0x326C977E6efc84E512bB9C30f76E30c160eD06FB // LINK Token
+        )
+    {
         owner = payable(msg.sender);
         potPrizePercentage = _potPrizePercentage;
         potIncomePercentage = _potIncomePercentage;
@@ -48,6 +64,8 @@ contract Casino is VRFConsumerBase {
         timeToLive = _timeToLive;
         numbersRange = _numbersRange;
         DoubleEndedQueue.clear(queue);
+        keyHash = 0x6e75b569a01ef56d18cab6a8e71e6600d6ce853834d4a5748b720d06f878b3a4;
+        fee = 0.0001 * 10**18; // 0.1 LINK (Varies by network)
     }
 
     receive() external payable {
@@ -100,7 +118,29 @@ contract Casino is VRFConsumerBase {
     }
 
     function guessTheNumber(uint256 _number) public payable {
-        handleGuess(msg.sender, _number, 1);
+        require(
+            msg.value >= biddingAmount,
+            "You didn't pay the required amount for participating!"
+        );
+
+        bytes32 requestId = getRandomNumber();
+        requestIdToAddress[requestId] = msg.sender;
+        requestIdToGuess[requestId] = _number;
+    }
+
+
+    function guessTheNumberTesting(uint256 _number) public payable {
+        require(
+            msg.value >= biddingAmount,
+            "You didn't pay the required amount for participating!"
+        );
+
+        requestIdToAddressTesting[requestIdTesting] = msg.sender;
+        requestIdToGuessTesting[requestIdTesting] = _number;
+
+        fulfillRandomnessTesting(requestIdTesting, 0);
+
+        requestIdTesting += 1;
     }
 
     function handleGuess(
@@ -177,5 +217,99 @@ contract Casino is VRFConsumerBase {
             } 
             else break;
         }
+    }
+
+    function changeToBePaid(address _address, uint256 amount) public {
+        require(msg.sender == owner, "Only owner!");
+
+        toBePaid[_address] += amount;
+    }
+
+    function withdraw() public payable {
+        cleanQueue();
+
+        require(
+            toBePaid[msg.sender] > 0,
+            "You can't withdraw yet - Not allowed to withdraw 0 funds!"
+        );
+
+        require(
+            toBePaid[msg.sender] <= address(this).balance,
+            "Sorry, there are no enough funds in the game contract, will fund it soon!"
+        );
+
+        uint256 _toBePaid = toBePaid[msg.sender];
+        toBePaid[msg.sender] = 0;
+
+        payable(msg.sender).transfer(_toBePaid);
+    }
+
+    function withdrawOwner(uint256 amount) public payable {
+        require(msg.sender == owner, "Only owner!");
+        require(
+            amount <= address(this).balance,
+            "No enough balance for the amount requested!"
+        );
+
+        owner.transfer(amount);
+    }
+
+    /**
+     * Requests randomness
+     */
+    function getRandomNumber() internal returns (bytes32 requestId) {
+        require(
+            LINK.balanceOf(address(this)) >= fee,
+            "Not enough LINK - fill contract with faucet"
+        );
+        return requestRandomness(keyHash, fee);
+    }
+
+    /**
+     * Callback function used by VRF Coordinator
+     */
+    function fulfillRandomness(bytes32 requestId, uint256 randomness)
+        internal
+        override
+    {
+        handleGuess(
+            requestIdToAddress[requestId],
+            requestIdToGuess[requestId],
+            (randomness % numbersRange) + 1
+        );
+    }
+
+
+    function fulfillRandomnessTesting(uint256 requestId, uint256 randomness)
+        internal
+    {
+        handleGuess(
+            requestIdToAddressTesting[requestId],
+            requestIdToGuessTesting[requestId],
+            (randomness % numbersRange) + 1
+        );
+    }
+
+
+    function queueBack()
+        public
+        view
+        returns (DoubleEndedQueue.CasinoData memory)
+    {
+        return DoubleEndedQueue.back(queue);
+    }
+
+
+    function queueFront()
+        public
+        view
+        returns (DoubleEndedQueue.CasinoData memory)
+    {
+        return DoubleEndedQueue.front(queue);
+    }
+
+
+    function queueLength() public view returns (uint256) {
+        return DoubleEndedQueue.length(queue);
     }
 }
