@@ -32,9 +32,7 @@ export default function Home({
         () => (winningNumber1 === 0 ? -1 : (winningNumber1 % NUMBER_CARDS) + 1),
         [winningNumber1]
     )
-
-    console.log(winningNumber1, winningNumber2)
-
+    
     useEffect(() => {
         setTimeout(() => {
             setTimerDone(true)

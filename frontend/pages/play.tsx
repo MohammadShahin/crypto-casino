@@ -31,7 +31,7 @@ const Home: NextPage = () => {
             setIsTransactionLoading(true)
             try {
                 await contract.guessTheNumber(userNumber, {
-                    value: ethers.utils.parseEther('0.0000001'),
+                    value: ethers.utils.parseEther('0.00005'),
                 })
             } catch {
                 toast({

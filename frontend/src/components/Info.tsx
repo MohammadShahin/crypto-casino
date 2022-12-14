@@ -24,7 +24,6 @@ function Info() {
         guessesModified?.sort((a, b) => {
             return parseInt(b.timestamp) - parseInt(a.timestamp)
         })
-        console.log(guessesModified)
         return guessesModified
     }, [guessesRaw, address])
 

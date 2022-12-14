@@ -15,10 +15,8 @@ export default function Withdraw() {
                 try {
                     const newBalance: ethers.BigNumber =
                         await contract.toBePaid(address)
-                    console.log(newBalance.toBigInt())
                     setBalance(newBalance.toBigInt())
                 } catch (e) {
-                    console.log('ere', e)
                     setBalance(0)
                 }
             }
@@ -35,8 +33,6 @@ export default function Withdraw() {
     if (balance === -1) {
         return <Spinner />
     }
-
-    console.log(balance)
 
     if (balance === BigInt(0)) {
         return <Text>You have no winnings to withdraw</Text>
