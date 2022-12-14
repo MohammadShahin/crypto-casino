@@ -1,0 +1,15 @@
+query getAllGuesses($first: Int, $skip: Int, $address: String) {
+  guesses(
+    first: $first
+    skip: $skip
+    subgraphError: allow
+  ) # where: { bidder: $address }
+  {
+    id
+    bidder
+    guessedNumber
+    winningNumber
+    prize
+    timestamp
+  }
+}
