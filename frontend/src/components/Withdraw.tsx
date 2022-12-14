@@ -16,7 +16,9 @@ export default function Withdraw() {
                         await contract.toBePaid(address)
                     ).toNumber()
                     setBalance(newBalance)
-                } catch {}
+                } catch {
+                    setBalance(0)
+                }
             }
         })()
     }, [contract, address])
