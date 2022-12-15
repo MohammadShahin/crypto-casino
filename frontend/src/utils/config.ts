@@ -1,702 +1,746 @@
-export const contractAddress = '0x12e9701E97111Afe67c7ffD7FEEb6566fec64BCe'
+export const contractAddress = '0x2FD4d30b003608dcdEeD846C715B8BBbDee8E1FF'
 export const abi = [
     {
-        inputs: [
+        "inputs": [
             {
-                internalType: 'uint256',
-                name: '_potPrizePercentage',
-                type: 'uint256',
+                "internalType": "uint256",
+                "name": "_potPrizePercentage",
+                "type": "uint256"
             },
             {
-                internalType: 'uint256',
-                name: '_potIncomePercentage',
-                type: 'uint256',
+                "internalType": "uint256",
+                "name": "_potIncomePercentage",
+                "type": "uint256"
             },
             {
-                internalType: 'uint256',
-                name: '_staticPrize',
-                type: 'uint256',
+                "internalType": "uint256",
+                "name": "_staticPrize",
+                "type": "uint256"
             },
             {
-                internalType: 'uint256',
-                name: '_ownerIncomePercentage',
-                type: 'uint256',
+                "internalType": "uint256",
+                "name": "_ownerIncomePercentage",
+                "type": "uint256"
             },
             {
-                internalType: 'uint256',
-                name: '_queuePrizeAmount',
-                type: 'uint256',
+                "internalType": "uint256",
+                "name": "_queuePrizeAmount",
+                "type": "uint256"
             },
             {
-                internalType: 'uint256',
-                name: '_biddingAmount',
-                type: 'uint256',
+                "internalType": "uint256",
+                "name": "_biddingAmount",
+                "type": "uint256"
             },
             {
-                internalType: 'uint256',
-                name: '_timeToLive',
-                type: 'uint256',
+                "internalType": "uint256",
+                "name": "_timeToLive",
+                "type": "uint256"
             },
             {
-                internalType: 'uint256',
-                name: '_numbersRange',
-                type: 'uint256',
-            },
+                "internalType": "uint256",
+                "name": "_numbersRange",
+                "type": "uint256"
+            }
         ],
-        stateMutability: 'nonpayable',
-        type: 'constructor',
+        "stateMutability": "nonpayable",
+        "type": "constructor"
     },
     {
-        inputs: [],
-        name: 'Empty',
-        type: 'error',
+        "inputs": [],
+        "name": "Empty",
+        "type": "error"
     },
     {
-        anonymous: false,
-        inputs: [
+        "anonymous": false,
+        "inputs": [
             {
-                indexed: true,
-                internalType: 'address',
-                name: 'bidder',
-                type: 'address',
+                "indexed": true,
+                "internalType": "address",
+                "name": "bidder",
+                "type": "address"
             },
             {
-                indexed: true,
-                internalType: 'uint256',
-                name: 'guessedNumber',
-                type: 'uint256',
+                "indexed": true,
+                "internalType": "uint256",
+                "name": "guessedNumber",
+                "type": "uint256"
             },
             {
-                indexed: true,
-                internalType: 'uint256',
-                name: 'winningNumber',
-                type: 'uint256',
+                "indexed": true,
+                "internalType": "uint256",
+                "name": "winningNumber",
+                "type": "uint256"
             },
             {
-                indexed: false,
-                internalType: 'uint256',
-                name: 'prize',
-                type: 'uint256',
-            },
+                "indexed": false,
+                "internalType": "uint256",
+                "name": "prize",
+                "type": "uint256"
+            }
         ],
-        name: 'GuessedTheNumber',
-        type: 'event',
+        "name": "GuessedTheNumber",
+        "type": "event"
     },
     {
-        inputs: [],
-        name: 'biddingAmount',
-        outputs: [
+        "anonymous": false,
+        "inputs": [
             {
-                internalType: 'uint256',
-                name: '',
-                type: 'uint256',
+                "indexed": true,
+                "internalType": "address",
+                "name": "player",
+                "type": "address"
             },
+            {
+                "indexed": true,
+                "internalType": "uint256",
+                "name": "amount",
+                "type": "uint256"
+            },
+            {
+                "indexed": false,
+                "internalType": "uint256",
+                "name": "timestamp",
+                "type": "uint256"
+            }
         ],
-        stateMutability: 'view',
-        type: 'function',
+        "name": "Withdraw",
+        "type": "event"
     },
     {
-        inputs: [
+        "anonymous": false,
+        "inputs": [
             {
-                internalType: 'uint256',
-                name: '_biddingAmount',
-                type: 'uint256',
+                "indexed": false,
+                "internalType": "uint256",
+                "name": "amount",
+                "type": "uint256"
             },
+            {
+                "indexed": false,
+                "internalType": "uint256",
+                "name": "timestamp",
+                "type": "uint256"
+            }
         ],
-        name: 'changeBiddingAmount',
-        outputs: [],
-        stateMutability: 'nonpayable',
-        type: 'function',
+        "name": "WithdrawOwner",
+        "type": "event"
     },
     {
-        inputs: [
+        "inputs": [],
+        "name": "biddingAmount",
+        "outputs": [
             {
-                internalType: 'uint256',
-                name: '_numbersRange',
-                type: 'uint256',
-            },
+                "internalType": "uint256",
+                "name": "",
+                "type": "uint256"
+            }
         ],
-        name: 'changeNumbersRange',
-        outputs: [],
-        stateMutability: 'nonpayable',
-        type: 'function',
+        "stateMutability": "view",
+        "type": "function"
     },
     {
-        inputs: [
+        "inputs": [
             {
-                internalType: 'uint256',
-                name: '_ownerIncomePercentage',
-                type: 'uint256',
-            },
+                "internalType": "uint256",
+                "name": "_biddingAmount",
+                "type": "uint256"
+            }
         ],
-        name: 'changeOwnerIncomePercentage',
-        outputs: [],
-        stateMutability: 'nonpayable',
-        type: 'function',
+        "name": "changeBiddingAmount",
+        "outputs": [],
+        "stateMutability": "nonpayable",
+        "type": "function"
     },
     {
-        inputs: [
+        "inputs": [
             {
-                internalType: 'uint256',
-                name: '_potIncomePercentage',
-                type: 'uint256',
-            },
+                "internalType": "uint256",
+                "name": "_numbersRange",
+                "type": "uint256"
+            }
         ],
-        name: 'changePotIncomePercentage',
-        outputs: [],
-        stateMutability: 'nonpayable',
-        type: 'function',
+        "name": "changeNumbersRange",
+        "outputs": [],
+        "stateMutability": "nonpayable",
+        "type": "function"
     },
     {
-        inputs: [
+        "inputs": [
             {
-                internalType: 'uint256',
-                name: '_percentage',
-                type: 'uint256',
-            },
+                "internalType": "uint256",
+                "name": "_ownerIncomePercentage",
+                "type": "uint256"
+            }
         ],
-        name: 'changePotPrizePercentage',
-        outputs: [],
-        stateMutability: 'nonpayable',
-        type: 'function',
+        "name": "changeOwnerIncomePercentage",
+        "outputs": [],
+        "stateMutability": "nonpayable",
+        "type": "function"
     },
     {
-        inputs: [
+        "inputs": [
             {
-                internalType: 'uint256',
-                name: '_queuePrizeAmount',
-                type: 'uint256',
-            },
+                "internalType": "uint256",
+                "name": "_potIncomePercentage",
+                "type": "uint256"
+            }
         ],
-        name: 'changeQueuePrizeAmount',
-        outputs: [],
-        stateMutability: 'nonpayable',
-        type: 'function',
+        "name": "changePotIncomePercentage",
+        "outputs": [],
+        "stateMutability": "nonpayable",
+        "type": "function"
     },
     {
-        inputs: [
+        "inputs": [
             {
-                internalType: 'uint256',
-                name: '_staticPrize',
-                type: 'uint256',
-            },
+                "internalType": "uint256",
+                "name": "_percentage",
+                "type": "uint256"
+            }
         ],
-        name: 'changeStaticPrize',
-        outputs: [],
-        stateMutability: 'nonpayable',
-        type: 'function',
+        "name": "changePotPrizePercentage",
+        "outputs": [],
+        "stateMutability": "nonpayable",
+        "type": "function"
     },
     {
-        inputs: [
+        "inputs": [
             {
-                internalType: 'uint256',
-                name: '_timeToLive',
-                type: 'uint256',
-            },
+                "internalType": "uint256",
+                "name": "_queuePrizeAmount",
+                "type": "uint256"
+            }
         ],
-        name: 'changeTimeToLive',
-        outputs: [],
-        stateMutability: 'nonpayable',
-        type: 'function',
+        "name": "changeQueuePrizeAmount",
+        "outputs": [],
+        "stateMutability": "nonpayable",
+        "type": "function"
     },
     {
-        inputs: [
+        "inputs": [
             {
-                internalType: 'address',
-                name: '_address',
-                type: 'address',
-            },
-            {
-                internalType: 'uint256',
-                name: 'amount',
-                type: 'uint256',
-            },
+                "internalType": "uint256",
+                "name": "_staticPrize",
+                "type": "uint256"
+            }
         ],
-        name: 'changeToBePaid',
-        outputs: [],
-        stateMutability: 'nonpayable',
-        type: 'function',
+        "name": "changeStaticPrize",
+        "outputs": [],
+        "stateMutability": "nonpayable",
+        "type": "function"
     },
     {
-        inputs: [],
-        name: 'cleanQueue',
-        outputs: [],
-        stateMutability: 'nonpayable',
-        type: 'function',
+        "inputs": [
+            {
+                "internalType": "uint256",
+                "name": "_timeToLive",
+                "type": "uint256"
+            }
+        ],
+        "name": "changeTimeToLive",
+        "outputs": [],
+        "stateMutability": "nonpayable",
+        "type": "function"
     },
     {
-        inputs: [
+        "inputs": [
             {
-                internalType: 'uint256',
-                name: 'a',
-                type: 'uint256',
+                "internalType": "address",
+                "name": "_address",
+                "type": "address"
             },
             {
-                internalType: 'uint256',
-                name: 'b',
-                type: 'uint256',
-            },
+                "internalType": "uint256",
+                "name": "amount",
+                "type": "uint256"
+            }
         ],
-        name: 'getMax',
-        outputs: [
-            {
-                internalType: 'uint256',
-                name: '',
-                type: 'uint256',
-            },
-        ],
-        stateMutability: 'pure',
-        type: 'function',
+        "name": "changeToBePaid",
+        "outputs": [],
+        "stateMutability": "nonpayable",
+        "type": "function"
     },
     {
-        inputs: [
-            {
-                internalType: 'uint256',
-                name: '_number',
-                type: 'uint256',
-            },
-        ],
-        name: 'guessTheNumber',
-        outputs: [],
-        stateMutability: 'payable',
-        type: 'function',
+        "inputs": [],
+        "name": "cleanQueue",
+        "outputs": [],
+        "stateMutability": "nonpayable",
+        "type": "function"
     },
     {
-        inputs: [
+        "inputs": [
             {
-                internalType: 'uint256',
-                name: '_number',
-                type: 'uint256',
+                "internalType": "uint256",
+                "name": "a",
+                "type": "uint256"
             },
+            {
+                "internalType": "uint256",
+                "name": "b",
+                "type": "uint256"
+            }
         ],
-        name: 'guessTheNumberTesting',
-        outputs: [],
-        stateMutability: 'payable',
-        type: 'function',
+        "name": "getMax",
+        "outputs": [
+            {
+                "internalType": "uint256",
+                "name": "",
+                "type": "uint256"
+            }
+        ],
+        "stateMutability": "pure",
+        "type": "function"
     },
     {
-        inputs: [
+        "inputs": [
             {
-                internalType: 'address',
-                name: 'bidder',
-                type: 'address',
-            },
-            {
-                internalType: 'uint256',
-                name: '_number',
-                type: 'uint256',
-            },
-            {
-                internalType: 'uint256',
-                name: 'winningNumber',
-                type: 'uint256',
-            },
+                "internalType": "uint256",
+                "name": "_number",
+                "type": "uint256"
+            }
         ],
-        name: 'handleGuess',
-        outputs: [
-            {
-                internalType: 'uint256',
-                name: '',
-                type: 'uint256',
-            },
-            {
-                internalType: 'uint256',
-                name: '',
-                type: 'uint256',
-            },
-        ],
-        stateMutability: 'payable',
-        type: 'function',
+        "name": "guessTheNumber",
+        "outputs": [],
+        "stateMutability": "payable",
+        "type": "function"
     },
     {
-        inputs: [],
-        name: 'numbersRange',
-        outputs: [
+        "inputs": [
             {
-                internalType: 'uint256',
-                name: '',
-                type: 'uint256',
-            },
+                "internalType": "uint256",
+                "name": "_number",
+                "type": "uint256"
+            }
         ],
-        stateMutability: 'view',
-        type: 'function',
+        "name": "guessTheNumberTesting",
+        "outputs": [],
+        "stateMutability": "payable",
+        "type": "function"
     },
     {
-        inputs: [],
-        name: 'owner',
-        outputs: [
+        "inputs": [
             {
-                internalType: 'address payable',
-                name: '',
-                type: 'address',
+                "internalType": "address",
+                "name": "bidder",
+                "type": "address"
             },
+            {
+                "internalType": "uint256",
+                "name": "_number",
+                "type": "uint256"
+            },
+            {
+                "internalType": "uint256",
+                "name": "winningNumber",
+                "type": "uint256"
+            }
         ],
-        stateMutability: 'view',
-        type: 'function',
+        "name": "handleGuess",
+        "outputs": [
+            {
+                "internalType": "uint256",
+                "name": "",
+                "type": "uint256"
+            },
+            {
+                "internalType": "uint256",
+                "name": "",
+                "type": "uint256"
+            }
+        ],
+        "stateMutability": "payable",
+        "type": "function"
     },
     {
-        inputs: [],
-        name: 'ownerIncomePercentage',
-        outputs: [
+        "inputs": [],
+        "name": "numbersRange",
+        "outputs": [
             {
-                internalType: 'uint256',
-                name: '',
-                type: 'uint256',
-            },
+                "internalType": "uint256",
+                "name": "",
+                "type": "uint256"
+            }
         ],
-        stateMutability: 'view',
-        type: 'function',
+        "stateMutability": "view",
+        "type": "function"
     },
     {
-        inputs: [],
-        name: 'pot',
-        outputs: [
+        "inputs": [],
+        "name": "owner",
+        "outputs": [
             {
-                internalType: 'uint256',
-                name: '',
-                type: 'uint256',
-            },
+                "internalType": "address payable",
+                "name": "",
+                "type": "address"
+            }
         ],
-        stateMutability: 'view',
-        type: 'function',
+        "stateMutability": "view",
+        "type": "function"
     },
     {
-        inputs: [],
-        name: 'potIncomePercentage',
-        outputs: [
+        "inputs": [],
+        "name": "ownerIncomePercentage",
+        "outputs": [
             {
-                internalType: 'uint256',
-                name: '',
-                type: 'uint256',
-            },
+                "internalType": "uint256",
+                "name": "",
+                "type": "uint256"
+            }
         ],
-        stateMutability: 'view',
-        type: 'function',
+        "stateMutability": "view",
+        "type": "function"
     },
     {
-        inputs: [],
-        name: 'potPrizePercentage',
-        outputs: [
+        "inputs": [],
+        "name": "pot",
+        "outputs": [
             {
-                internalType: 'uint256',
-                name: '',
-                type: 'uint256',
-            },
+                "internalType": "uint256",
+                "name": "",
+                "type": "uint256"
+            }
         ],
-        stateMutability: 'view',
-        type: 'function',
+        "stateMutability": "view",
+        "type": "function"
     },
     {
-        inputs: [],
-        name: 'queue',
-        outputs: [
+        "inputs": [],
+        "name": "potIncomePercentage",
+        "outputs": [
             {
-                internalType: 'int256',
-                name: '_begin',
-                type: 'int256',
-            },
-            {
-                internalType: 'int256',
-                name: '_end',
-                type: 'int256',
-            },
+                "internalType": "uint256",
+                "name": "",
+                "type": "uint256"
+            }
         ],
-        stateMutability: 'view',
-        type: 'function',
+        "stateMutability": "view",
+        "type": "function"
     },
     {
-        inputs: [],
-        name: 'queueAvailableFunds',
-        outputs: [
+        "inputs": [],
+        "name": "potPrizePercentage",
+        "outputs": [
             {
-                internalType: 'uint256',
-                name: '',
-                type: 'uint256',
-            },
+                "internalType": "uint256",
+                "name": "",
+                "type": "uint256"
+            }
         ],
-        stateMutability: 'view',
-        type: 'function',
+        "stateMutability": "view",
+        "type": "function"
     },
     {
-        inputs: [],
-        name: 'queueBack',
-        outputs: [
+        "inputs": [],
+        "name": "queue",
+        "outputs": [
             {
-                components: [
+                "internalType": "int256",
+                "name": "_begin",
+                "type": "int256"
+            },
+            {
+                "internalType": "int256",
+                "name": "_end",
+                "type": "int256"
+            }
+        ],
+        "stateMutability": "view",
+        "type": "function"
+    },
+    {
+        "inputs": [],
+        "name": "queueAvailableFunds",
+        "outputs": [
+            {
+                "internalType": "uint256",
+                "name": "",
+                "type": "uint256"
+            }
+        ],
+        "stateMutability": "view",
+        "type": "function"
+    },
+    {
+        "inputs": [],
+        "name": "queueBack",
+        "outputs": [
+            {
+                "components": [
                     {
-                        internalType: 'address',
-                        name: 'bidder',
-                        type: 'address',
+                        "internalType": "address",
+                        "name": "bidder",
+                        "type": "address"
                     },
                     {
-                        internalType: 'uint256',
-                        name: 'bid',
-                        type: 'uint256',
+                        "internalType": "uint256",
+                        "name": "bid",
+                        "type": "uint256"
                     },
                     {
-                        internalType: 'uint256',
-                        name: 'guessedNumber',
-                        type: 'uint256',
+                        "internalType": "uint256",
+                        "name": "guessedNumber",
+                        "type": "uint256"
                     },
                     {
-                        internalType: 'uint256',
-                        name: 'winningNumber',
-                        type: 'uint256',
+                        "internalType": "uint256",
+                        "name": "winningNumber",
+                        "type": "uint256"
                     },
                     {
-                        internalType: 'uint256',
-                        name: 'timeAdded',
-                        type: 'uint256',
-                    },
+                        "internalType": "uint256",
+                        "name": "timeAdded",
+                        "type": "uint256"
+                    }
                 ],
-                internalType: 'struct DoubleEndedQueue.CasinoData',
-                name: '',
-                type: 'tuple',
-            },
+                "internalType": "struct DoubleEndedQueue.CasinoData",
+                "name": "",
+                "type": "tuple"
+            }
         ],
-        stateMutability: 'view',
-        type: 'function',
+        "stateMutability": "view",
+        "type": "function"
     },
     {
-        inputs: [],
-        name: 'queueFront',
-        outputs: [
+        "inputs": [],
+        "name": "queueFront",
+        "outputs": [
             {
-                components: [
+                "components": [
                     {
-                        internalType: 'address',
-                        name: 'bidder',
-                        type: 'address',
+                        "internalType": "address",
+                        "name": "bidder",
+                        "type": "address"
                     },
                     {
-                        internalType: 'uint256',
-                        name: 'bid',
-                        type: 'uint256',
+                        "internalType": "uint256",
+                        "name": "bid",
+                        "type": "uint256"
                     },
                     {
-                        internalType: 'uint256',
-                        name: 'guessedNumber',
-                        type: 'uint256',
+                        "internalType": "uint256",
+                        "name": "guessedNumber",
+                        "type": "uint256"
                     },
                     {
-                        internalType: 'uint256',
-                        name: 'winningNumber',
-                        type: 'uint256',
+                        "internalType": "uint256",
+                        "name": "winningNumber",
+                        "type": "uint256"
                     },
                     {
-                        internalType: 'uint256',
-                        name: 'timeAdded',
-                        type: 'uint256',
-                    },
+                        "internalType": "uint256",
+                        "name": "timeAdded",
+                        "type": "uint256"
+                    }
                 ],
-                internalType: 'struct DoubleEndedQueue.CasinoData',
-                name: '',
-                type: 'tuple',
-            },
+                "internalType": "struct DoubleEndedQueue.CasinoData",
+                "name": "",
+                "type": "tuple"
+            }
         ],
-        stateMutability: 'view',
-        type: 'function',
+        "stateMutability": "view",
+        "type": "function"
     },
     {
-        inputs: [],
-        name: 'queueLength',
-        outputs: [
+        "inputs": [],
+        "name": "queueLength",
+        "outputs": [
             {
-                internalType: 'uint256',
-                name: '',
-                type: 'uint256',
-            },
+                "internalType": "uint256",
+                "name": "",
+                "type": "uint256"
+            }
         ],
-        stateMutability: 'view',
-        type: 'function',
+        "stateMutability": "view",
+        "type": "function"
     },
     {
-        inputs: [],
-        name: 'queuePrizeAmount',
-        outputs: [
+        "inputs": [],
+        "name": "queuePrizeAmount",
+        "outputs": [
             {
-                internalType: 'uint256',
-                name: '',
-                type: 'uint256',
-            },
+                "internalType": "uint256",
+                "name": "",
+                "type": "uint256"
+            }
         ],
-        stateMutability: 'view',
-        type: 'function',
+        "stateMutability": "view",
+        "type": "function"
     },
     {
-        inputs: [],
-        name: 'queueTakenAmount',
-        outputs: [
+        "inputs": [],
+        "name": "queueTakenAmount",
+        "outputs": [
             {
-                internalType: 'uint256',
-                name: '',
-                type: 'uint256',
-            },
+                "internalType": "uint256",
+                "name": "",
+                "type": "uint256"
+            }
         ],
-        stateMutability: 'view',
-        type: 'function',
+        "stateMutability": "view",
+        "type": "function"
     },
     {
-        inputs: [
+        "inputs": [
             {
-                internalType: 'bytes32',
-                name: 'requestId',
-                type: 'bytes32',
+                "internalType": "bytes32",
+                "name": "requestId",
+                "type": "bytes32"
             },
             {
-                internalType: 'uint256',
-                name: 'randomness',
-                type: 'uint256',
-            },
+                "internalType": "uint256",
+                "name": "randomness",
+                "type": "uint256"
+            }
         ],
-        name: 'rawFulfillRandomness',
-        outputs: [],
-        stateMutability: 'nonpayable',
-        type: 'function',
+        "name": "rawFulfillRandomness",
+        "outputs": [],
+        "stateMutability": "nonpayable",
+        "type": "function"
     },
     {
-        inputs: [
+        "inputs": [
             {
-                internalType: 'bytes32',
-                name: '',
-                type: 'bytes32',
-            },
+                "internalType": "bytes32",
+                "name": "",
+                "type": "bytes32"
+            }
         ],
-        name: 'requestIdToAddress',
-        outputs: [
+        "name": "requestIdToAddress",
+        "outputs": [
             {
-                internalType: 'address',
-                name: '',
-                type: 'address',
-            },
+                "internalType": "address",
+                "name": "",
+                "type": "address"
+            }
         ],
-        stateMutability: 'view',
-        type: 'function',
+        "stateMutability": "view",
+        "type": "function"
     },
     {
-        inputs: [
+        "inputs": [
             {
-                internalType: 'uint256',
-                name: '',
-                type: 'uint256',
-            },
+                "internalType": "uint256",
+                "name": "",
+                "type": "uint256"
+            }
         ],
-        name: 'requestIdToAddressTesting',
-        outputs: [
+        "name": "requestIdToAddressTesting",
+        "outputs": [
             {
-                internalType: 'address',
-                name: '',
-                type: 'address',
-            },
+                "internalType": "address",
+                "name": "",
+                "type": "address"
+            }
         ],
-        stateMutability: 'view',
-        type: 'function',
+        "stateMutability": "view",
+        "type": "function"
     },
     {
-        inputs: [
+        "inputs": [
             {
-                internalType: 'bytes32',
-                name: '',
-                type: 'bytes32',
-            },
+                "internalType": "bytes32",
+                "name": "",
+                "type": "bytes32"
+            }
         ],
-        name: 'requestIdToGuess',
-        outputs: [
+        "name": "requestIdToGuess",
+        "outputs": [
             {
-                internalType: 'uint256',
-                name: '',
-                type: 'uint256',
-            },
+                "internalType": "uint256",
+                "name": "",
+                "type": "uint256"
+            }
         ],
-        stateMutability: 'view',
-        type: 'function',
+        "stateMutability": "view",
+        "type": "function"
     },
     {
-        inputs: [
+        "inputs": [
             {
-                internalType: 'uint256',
-                name: '',
-                type: 'uint256',
-            },
+                "internalType": "uint256",
+                "name": "",
+                "type": "uint256"
+            }
         ],
-        name: 'requestIdToGuessTesting',
-        outputs: [
+        "name": "requestIdToGuessTesting",
+        "outputs": [
             {
-                internalType: 'uint256',
-                name: '',
-                type: 'uint256',
-            },
+                "internalType": "uint256",
+                "name": "",
+                "type": "uint256"
+            }
         ],
-        stateMutability: 'view',
-        type: 'function',
+        "stateMutability": "view",
+        "type": "function"
     },
     {
-        inputs: [],
-        name: 'staticPrize',
-        outputs: [
+        "inputs": [],
+        "name": "staticPrize",
+        "outputs": [
             {
-                internalType: 'uint256',
-                name: '',
-                type: 'uint256',
-            },
+                "internalType": "uint256",
+                "name": "",
+                "type": "uint256"
+            }
         ],
-        stateMutability: 'view',
-        type: 'function',
+        "stateMutability": "view",
+        "type": "function"
     },
     {
-        inputs: [],
-        name: 'timeToLive',
-        outputs: [
+        "inputs": [],
+        "name": "timeToLive",
+        "outputs": [
             {
-                internalType: 'uint256',
-                name: '',
-                type: 'uint256',
-            },
+                "internalType": "uint256",
+                "name": "",
+                "type": "uint256"
+            }
         ],
-        stateMutability: 'view',
-        type: 'function',
+        "stateMutability": "view",
+        "type": "function"
     },
     {
-        inputs: [
+        "inputs": [
             {
-                internalType: 'address',
-                name: '',
-                type: 'address',
-            },
+                "internalType": "address",
+                "name": "",
+                "type": "address"
+            }
         ],
-        name: 'toBePaid',
-        outputs: [
+        "name": "toBePaid",
+        "outputs": [
             {
-                internalType: 'uint256',
-                name: '',
-                type: 'uint256',
-            },
+                "internalType": "uint256",
+                "name": "",
+                "type": "uint256"
+            }
         ],
-        stateMutability: 'view',
-        type: 'function',
+        "stateMutability": "view",
+        "type": "function"
     },
     {
-        inputs: [],
-        name: 'withdraw',
-        outputs: [],
-        stateMutability: 'payable',
-        type: 'function',
+        "inputs": [],
+        "name": "withdraw",
+        "outputs": [],
+        "stateMutability": "payable",
+        "type": "function"
     },
     {
-        inputs: [
+        "inputs": [
             {
-                internalType: 'uint256',
-                name: 'amount',
-                type: 'uint256',
-            },
+                "internalType": "uint256",
+                "name": "amount",
+                "type": "uint256"
+            }
         ],
-        name: 'withdrawOwner',
-        outputs: [],
-        stateMutability: 'payable',
-        type: 'function',
+        "name": "withdrawOwner",
+        "outputs": [],
+        "stateMutability": "payable",
+        "type": "function"
     },
     {
-        stateMutability: 'payable',
-        type: 'receive',
-    },
+        "stateMutability": "payable",
+        "type": "receive"
+    }
 ]

@@ -7,3 +7,16 @@ type Guess @entity {
   prize: BigInt!
   timestamp: BigInt!
 }
+
+type OwnerWithdrawal @entity {
+  id: ID!
+  amount: BigInt!
+  timestamp: BigInt!
+}
+
+type BidWithdrawal @entity {
+  id: ID!
+  player: String!
+  amount: BigInt!
+  timestamp: BigInt!
+}

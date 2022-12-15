@@ -40,6 +40,54 @@ export class GuessedTheNumber__Params {
   }
 }
 
+export class Withdraw extends ethereum.Event {
+  get params(): Withdraw__Params {
+    return new Withdraw__Params(this);
+  }
+}
+
+export class Withdraw__Params {
+  _event: Withdraw;
+
+  constructor(event: Withdraw) {
+    this._event = event;
+  }
+
+  get player(): Address {
+    return this._event.parameters[0].value.toAddress();
+  }
+
+  get amount(): BigInt {
+    return this._event.parameters[1].value.toBigInt();
+  }
+
+  get timestamp(): BigInt {
+    return this._event.parameters[2].value.toBigInt();
+  }
+}
+
+export class WithdrawOwner extends ethereum.Event {
+  get params(): WithdrawOwner__Params {
+    return new WithdrawOwner__Params(this);
+  }
+}
+
+export class WithdrawOwner__Params {
+  _event: WithdrawOwner;
+
+  constructor(event: WithdrawOwner) {
+    this._event = event;
+  }
+
+  get amount(): BigInt {
+    return this._event.parameters[0].value.toBigInt();
+  }
+
+  get timestamp(): BigInt {
+    return this._event.parameters[1].value.toBigInt();
+  }
+}
+
 export class Casino__queueResult {
   value0: BigInt;
   value1: BigInt;

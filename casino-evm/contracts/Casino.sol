@@ -38,6 +38,8 @@ contract Casino is VRFConsumerBase {
     mapping(bytes32 => uint256) public requestIdToGuess;
 
     event GuessedTheNumber(address indexed bidder, uint indexed guessedNumber, uint indexed winningNumber, uint prize);
+    event Withdraw(address indexed player, uint256 indexed amount, uint256 timestamp);
+    event WithdrawOwner(uint256 amount, uint256 timestamp);
 
     constructor(
         uint256 _potPrizePercentage,
@@ -242,6 +244,8 @@ contract Casino is VRFConsumerBase {
         toBePaid[msg.sender] = 0;
 
         payable(msg.sender).transfer(_toBePaid);
+
+        emit Withdraw(msg.sender, _toBePaid, block.timestamp);
     }
 
     function withdrawOwner(uint256 amount) public payable {
@@ -252,6 +256,8 @@ contract Casino is VRFConsumerBase {
         );
 
         owner.transfer(amount);
+
+        emit WithdrawOwner(amount, block.timestamp);
     }
 
     /**
