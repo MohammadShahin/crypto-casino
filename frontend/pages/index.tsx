@@ -69,7 +69,7 @@ const Home: NextPage = () => {
                     If you pick the Ace of clubs you will win the maximum
                     between{' '}
                     <span style={{ fontWeight: 'bold', color: 'turquoise' }}>
-                        ({ethers.utils.formatEther(staticPrize)}, 20% of the
+                        ({staticPrize !== "Fetching ..." && ethers.utils.formatEther(staticPrize)}, 20% of the
                         money in the queue) eth
                     </span>
                     .
@@ -79,7 +79,7 @@ const Home: NextPage = () => {
                     If you pick the Ace of spades you will win the maximum
                     between{' '}
                     <span style={{ fontWeight: 'bold', color: 'turquoise' }}>
-                        ({ethers.utils.formatEther(staticPrize)}, 10% of the
+                        ({staticPrize !== "Fetching ..." && ethers.utils.formatEther(staticPrize)}, 10% of the
                         money in the pot) eth
                     </span>
                     .
